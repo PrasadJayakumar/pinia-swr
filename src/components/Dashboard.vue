@@ -4,22 +4,22 @@ import { onMounted, ref } from 'vue';
 import Weather from './Weather.vue';
 import WatchList from './WatchList.vue';
 
-import { useDedup } from '@/store/useDedup.js'
+import { useWeather } from '@/store/weather/useWeather.js'
 
 
-const store = useDedup(),
-  fetchData = store.fetchData;
+const store = useWeather(),
+  fetchWeatherData = store.fetchWeatherData;
 
 const key = ref(Date.now());
 
 const getLatest = () => {
-  fetchData(100);
+  fetchWeatherData();
   key.value = Date.now();
 }
 
 onMounted(() => {
   console.log("Dashboard.onMounted is called...");
-  fetchData(100);
+  fetchWeatherData();
 }) 
 </script>
 

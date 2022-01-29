@@ -1,18 +1,14 @@
 <script setup>
-import { useDedup } from '@/store/useDedup.js'
+import { useWeather } from '@/store/weather/useWeather.js'
 import { onMounted } from 'vue';
 
-const store = useDedup(),
-  fetchData = store.fetchData;
+const store = useWeather(),
+  fetchWeatherData = store.fetchWeatherData;
 
 onMounted(() => {
   console.log("WatchList.onMounted is called...");
-  fetchData(100);
+  fetchWeatherData();
 })
-
-const cities = [
-  { id: 1001, name: 'San Ramon', temperature: 18 },
-  { id: 1001, name: 'Livermore', temperature: 17 }]
 </script>
 
 <template>
@@ -26,7 +22,7 @@ const cities = [
         </tr>
       </thead>
       <tbody>
-        <tr v-for="city in cities" :key="city.id">
+        <tr v-for="city in store.cities" :key="city.id">
           <td style="text-align: left">{{ city.name }}</td>
           <td style="text-align: left">{{ city.temperature }}</td>
         </tr>

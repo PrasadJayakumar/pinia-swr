@@ -1,10 +1,11 @@
+// Equivalent to Axios Call
 const apiClientCall = () => {
   return new Promise((resolve, reject) => {
     setTimeout(
       () =>
-        reject({
+        resolve({
           id: '007',
-          message: 'Am I working',
+          message: 'Am I working'
         }),
       3000
     );
